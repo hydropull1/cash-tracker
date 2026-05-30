@@ -1,0 +1,431 @@
+.app-shell,
+.auth-shell,
+.setup-screen {
+  min-height: 100svh;
+}
+
+.auth-shell,
+.setup-screen {
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+}
+
+.app-shell {
+  padding: 32px;
+}
+
+.auth-card,
+.setup-card,
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+}
+
+.auth-card,
+.setup-card {
+  width: min(100%, 440px);
+  padding: 32px;
+}
+
+.app-header,
+.panel-heading,
+.week-summary,
+.day-heading,
+.transaction-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.app-header {
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+.muted,
+small {
+  color: var(--muted);
+}
+
+.stack,
+.transaction-form {
+  display: grid;
+  gap: 16px;
+}
+
+.stack {
+  margin-top: 28px;
+}
+
+label {
+  color: var(--text-h);
+  display: grid;
+  font-size: 14px;
+  font-weight: 700;
+  gap: 8px;
+  text-align: left;
+}
+
+input,
+textarea {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text-h);
+  font: inherit;
+  outline: none;
+  padding: 12px 14px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-bg);
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.primary-button,
+.secondary-button,
+.text-button,
+.tabs button,
+.segmented-control button {
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.primary-button {
+  background: var(--text-h);
+  color: #fff;
+  padding: 14px 18px;
+}
+
+.secondary-button {
+  background: #fff;
+  border: 1px solid var(--border);
+  color: var(--text-h);
+  padding: 10px 16px;
+}
+
+.text-button {
+  background: transparent;
+  color: var(--accent);
+  margin-top: 18px;
+  padding: 10px 0 0;
+}
+
+.message {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 14px;
+  color: #9a3412;
+  padding: 12px 14px;
+}
+
+.dashboard-message {
+  margin: 0 0 18px;
+}
+
+.tabs {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 6px;
+  margin-bottom: 24px;
+  padding: 6px;
+}
+
+.tabs button {
+  background: transparent;
+  color: var(--muted);
+  padding: 10px 22px;
+}
+
+.tabs button.active {
+  background: var(--text-h);
+  color: #fff;
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.panel {
+  padding: 24px;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.stats-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 20px;
+}
+
+.stat-card {
+  border-radius: 20px;
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+}
+
+.stat-card span {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.stat-card strong {
+  color: var(--text-h);
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: -0.04em;
+}
+
+.stat-card.pickup {
+  background: var(--pickup-bg);
+}
+
+.stat-card.dropoff {
+  background: var(--dropoff-bg);
+}
+
+.stat-card.net {
+  background: #eef2ff;
+}
+
+.stat-card.net.negative {
+  background: var(--dropoff-bg);
+}
+
+.segmented-control {
+  background: #f1f5f9;
+  border-radius: 999px;
+  display: grid;
+  gap: 6px;
+  grid-template-columns: 1fr 1fr;
+  padding: 6px;
+}
+
+.segmented-control button {
+  background: transparent;
+  color: var(--muted);
+  padding: 10px 12px;
+}
+
+.segmented-control .pickup.active {
+  background: var(--pickup);
+  color: #fff;
+}
+
+.segmented-control .dropoff.active {
+  background: var(--dropoff);
+  color: #fff;
+}
+
+.loading-pill {
+  background: #eff6ff;
+  border-radius: 999px;
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 8px 12px;
+}
+
+.transaction-list {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+.transaction-list.compact {
+  margin-top: 12px;
+}
+
+.transaction-list li {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.transaction-list.compact li {
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.transaction-list div {
+  flex: 1;
+  min-width: 0;
+}
+
+.transaction-list strong,
+.transaction-list small {
+  display: block;
+}
+
+.transaction-list small {
+  font-size: 13px;
+}
+
+.type-dot {
+  border-radius: 999px;
+  height: 12px;
+  width: 12px;
+}
+
+.type-dot.pickup {
+  background: var(--pickup);
+}
+
+.type-dot.dropoff {
+  background: var(--dropoff);
+}
+
+.pickup {
+  color: var(--pickup);
+}
+
+.dropoff,
+.negative {
+  color: var(--dropoff);
+}
+
+.net {
+  color: var(--text-h);
+}
+
+.empty-state {
+  background: #f8fafc;
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  color: var(--muted);
+  margin: 20px 0 0;
+  padding: 18px;
+  text-align: center;
+}
+
+.weekly-panel {
+  padding: 24px;
+}
+
+.week-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.week-card {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.week-summary {
+  background: #fff;
+  color: var(--text-h);
+  padding: 18px;
+  text-align: left;
+  width: 100%;
+}
+
+.week-summary small,
+.day-heading small {
+  display: block;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.summary-totals {
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 900;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.day-breakdown {
+  background: #f8fafc;
+  border-top: 1px solid var(--border);
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+}
+
+.day-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.day-net {
+  color: var(--text-h);
+  font-weight: 900;
+}
+
+.mini-totals {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 800;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    padding: 18px;
+  }
+
+  .app-header,
+  .panel-heading,
+  .week-summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dashboard-grid,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-totals {
+    justify-content: flex-start;
+  }
+}

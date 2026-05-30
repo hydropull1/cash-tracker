@@ -1,0 +1,87 @@
+:root {
+  --text: #334155;
+  --text-h: #0f172a;
+  --muted: #64748b;
+  --bg: #f4f7f4;
+  --surface: rgba(255, 255, 255, 0.92);
+  --border: #dce5dc;
+  --accent: #15803d;
+  --accent-bg: rgba(21, 128, 61, 0.12);
+  --pickup: #15803d;
+  --pickup-bg: #dcfce7;
+  --dropoff: #dc2626;
+  --dropoff-bg: #fee2e2;
+  --shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 16px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(21, 128, 61, 0.16), transparent 32rem),
+    linear-gradient(135deg, #f8fafc 0%, var(--bg) 100%);
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  max-width: 1180px;
+  margin: 0 auto;
+  min-height: 100svh;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: clamp(36px, 6vw, 64px);
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+  margin: 0;
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+code,
+input,
+textarea,
+button {
+  font-family: var(--mono);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: #eef2ff;
+  border-radius: 6px;
+  color: var(--text-h);
+}
