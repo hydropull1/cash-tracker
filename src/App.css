@@ -284,6 +284,32 @@ button:disabled {
   padding: 14px;
 }
 
+.delete-transaction-button {
+  align-items: center;
+  background: #fee2e2;
+  border-radius: 999px;
+  color: #dc2626;
+  display: inline-flex;
+  flex: 0 0 auto;
+  height: 34px;
+  justify-content: center;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  width: 34px;
+}
+
+.delete-transaction-button:hover:not(:disabled) {
+  background: #dc2626;
+  color: #fff;
+}
+
+.delete-transaction-button svg {
+  fill: currentColor;
+  height: 18px;
+  width: 18px;
+}
+
 .transaction-list.compact li {
   border-radius: 12px;
   padding: 10px;

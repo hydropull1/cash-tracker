@@ -124,6 +124,7 @@ function App() {
   const [loadingSession, setLoadingSession] = useState(Boolean(supabase))
   const [transactions, setTransactions] = useState([])
   const [transactionsLoading, setTransactionsLoading] = useState(false)
+  const [deletingTransactionId, setDeletingTransactionId] = useState('')
   const [message, setMessage] = useState('')
   const [expandedWeek, setExpandedWeek] = useState('')
   const [form, setForm] = useState({
@@ -249,6 +250,33 @@ function App() {
       note: '',
     }))
     await loadTransactions(session.user.id)
+  }
+
+  async function handleDeleteTransaction(transaction) {
+    const confirmed = window.confirm(
+      `Delete this ${transaction.type} for ${currency.format(Number(transaction.amount))}?`,
+    )
+
+    if (!confirmed) {
+      return
+    }
+
+    setDeletingTransactionId(transaction.id)
+    setMessage('')
+
+    const { error } = await supabase
+      .from('transactions')
+      .delete()
+      .eq('id', transaction.id)
+      .eq('user_id', session.user.id)
+
+    if (error) {
+      setMessage(error.message)
+    } else {
+      setTransactions((current) => current.filter((item) => item.id !== transaction.id))
+    }
+
+    setDeletingTransactionId('')
   }
 
   function updateForm(field, value) {
@@ -470,7 +498,12 @@ function App() {
           <section className="panel">
             <p className="eyebrow">Today&apos;s activity</p>
             <h2>{todayTransactions.length} transactions</h2>
-            <TransactionList transactions={todayTransactions} emptyText="No transactions today." />
+            <TransactionList
+              transactions={todayTransactions}
+              emptyText="No transactions today."
+              onDelete={handleDeleteTransaction}
+              deletingTransactionId={deletingTransactionId}
+            />
           </section>
         </section>
       ) : (
@@ -547,7 +580,13 @@ function App() {
   )
 }
 
-function TransactionList({ transactions, emptyText, compact = false }) {
+function TransactionList({
+  transactions,
+  emptyText,
+  compact = false,
+  onDelete,
+  deletingTransactionId = '',
+}) {
   if (transactions.length === 0) {
     return <p className="empty-state">{emptyText}</p>
   }
@@ -568,6 +607,20 @@ function TransactionList({ transactions, emptyText, compact = false }) {
             {transaction.type === 'pickup' ? '+' : '-'}
             {currency.format(Number(transaction.amount))}
           </span>
+          {onDelete && (
+            <button
+              type="button"
+              className="delete-transaction-button"
+              onClick={() => onDelete(transaction)}
+              disabled={deletingTransactionId === transaction.id}
+              aria-label={`Delete ${transaction.place} transaction`}
+              title="Delete transaction"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 3h6l1 2h4v2H4V5h4l1-2Zm-2 6h10l-.7 11H7.7L7 9Zm3 2v7h2v-7h-2Zm4 0v7h2v-7h-2Z" />
+              </svg>
+            </button>
+          )}
         </li>
       ))}
     </ul>
