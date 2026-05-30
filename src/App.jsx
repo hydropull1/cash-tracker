@@ -77,7 +77,7 @@ function groupTransactionsByWeek(transactions) {
   const weeks = new Map()
 
   transactions.forEach((transaction) => {
-    const weekStart = getWeekStart(transaction.transaction_date)
+    const weekStart = getWeekStart(transaction.date)
     const weekEnd = addDays(weekStart, 6)
 
     if (!weeks.has(weekStart)) {
@@ -100,7 +100,7 @@ function groupTransactionsByWeek(transactions) {
       days: dayNames.map((name, index) => {
         const dateKey = addDays(week.weekStart, index)
         const transactionsForDay = week.transactions.filter(
-          (transaction) => transaction.transaction_date === dateKey,
+          (transaction) => transaction.date === dateKey,
         )
 
         return {
@@ -130,7 +130,7 @@ function App() {
     type: 'pickup',
     place: '',
     amount: '',
-    transaction_date: todayKey,
+    date: todayKey,
     note: '',
   })
 
@@ -163,7 +163,7 @@ function App() {
   }, [session])
 
   const todayTransactions = useMemo(
-    () => transactions.filter((transaction) => transaction.transaction_date === todayKey),
+    () => transactions.filter((transaction) => transaction.date === todayKey),
     [transactions],
   )
   const todayTotals = useMemo(() => getTotals(todayTransactions), [todayTransactions])
@@ -177,7 +177,7 @@ function App() {
       .from('transactions')
       .select('*')
       .eq('user_id', userId)
-      .order('transaction_date', { ascending: false })
+      .order('date', { ascending: false })
       .order('created_at', { ascending: false })
 
     if (error) {
@@ -233,7 +233,7 @@ function App() {
       type: form.type,
       place: form.place.trim(),
       amount,
-      transaction_date: form.transaction_date,
+      date: form.date,
       note: form.note.trim() || null,
     })
 
@@ -446,8 +446,8 @@ function App() {
                 Date
                 <input
                   type="date"
-                  value={form.transaction_date}
-                  onChange={(event) => updateForm('transaction_date', event.target.value)}
+                  value={form.date}
+                  onChange={(event) => updateForm('date', event.target.value)}
                   required
                 />
               </label>
@@ -560,7 +560,7 @@ function TransactionList({ transactions, emptyText, compact = false }) {
           <div>
             <strong>{transaction.place}</strong>
             <small>
-              {formatDate(transaction.transaction_date)}
+              {formatDate(transaction.date)}
               {transaction.note ? ` - ${transaction.note}` : ''}
             </small>
           </div>

@@ -29,7 +29,7 @@ create table public.transactions (
   type text not null check (type in ('pickup', 'dropoff')),
   place text not null,
   amount numeric(12, 2) not null check (amount > 0),
-  transaction_date date not null,
+  date date not null,
   note text,
   created_at timestamptz not null default now()
 );
